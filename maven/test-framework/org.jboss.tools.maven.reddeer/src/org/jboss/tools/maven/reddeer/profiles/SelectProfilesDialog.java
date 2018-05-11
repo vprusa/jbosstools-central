@@ -12,8 +12,10 @@ package org.jboss.tools.maven.reddeer.profiles;
 
 import java.util.ArrayList;
 
+import org.eclipse.reddeer.common.matcher.RegexMatcher;
 import org.eclipse.reddeer.common.wait.TimePeriod;
 import org.eclipse.reddeer.common.wait.WaitWhile;
+import org.eclipse.reddeer.core.matcher.WithTextMatcher;
 import org.eclipse.reddeer.eclipse.ui.navigator.resources.ProjectExplorer;
 import org.eclipse.reddeer.jface.wizard.WizardDialog;
 import org.eclipse.reddeer.swt.impl.button.PushButton;
@@ -35,7 +37,8 @@ public class SelectProfilesDialog extends WizardDialog{
 		ProjectExplorer pe = new ProjectExplorer();
 		pe.open();
 		pe.getProject(projectName).select();
-		new ContextMenuItem("Maven","Select Maven Profiles...").select();
+		//new ContextMenuItem("Maven","Select Maven Profiles...");
+		new ContextMenuItem(new WithTextMatcher("Maven"),new RegexMatcher(".*Select Maven Profiles.*"));
 		new DefaultShell("Select Maven profiles");		
 	}
 	
